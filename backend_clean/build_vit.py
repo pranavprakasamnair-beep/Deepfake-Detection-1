@@ -1,4 +1,4 @@
-import os
+﻿vit_code = '''import os
 import torch
 import torch.nn.functional as F
 from transformers import AutoImageProcessor, AutoModelForImageClassification
@@ -122,3 +122,8 @@ def predict_vit_batch(pil_images: list) -> list:
             pass
 
     return [float(sum(s) / len(s)) if s else 0.5 for s in scores_all]
+'''
+
+with open("ml_models/vit_model.py", "w", encoding="utf-8") as f:
+    f.write(vit_code)
+print("Updated ml_models/vit_model.py")

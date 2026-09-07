@@ -1,4 +1,4 @@
-import os
+﻿routes_code = '''import os
 import shutil
 import subprocess
 import io
@@ -276,3 +276,8 @@ async def analyze_audio(file: UploadFile = File(...)):
                 os.remove(converted_path)
             except:
                 pass
+'''
+
+with open("api/routes.py", "w", encoding="utf-8") as f:
+    f.write(routes_code)
+print("Wrote api/routes.py")

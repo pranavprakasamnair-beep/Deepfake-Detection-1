@@ -62,40 +62,42 @@ export const AnalysisResult = ({ result }) => {
         </div>
 
         {/* Form Data */}
-        <div className="space-y-6 mb-12 relative z-10">
-          <div className="flex items-end border-b border-slate-400/70 pb-1">
-            <span className="font-mono font-bold w-32 md:w-40 shrink-0 text-slate-800 text-sm md:text-base">SUBJECT FILE:</span>
-            <span className="font-[cursive] text-xl md:text-2xl text-[#2a2a27] -rotate-1 ml-4 tracking-wide break-all">
+        <div className="space-y-4 mb-8 relative z-10">
+          <div className="flex flex-col sm:flex-row sm:items-center border-b border-slate-300 pb-2 gap-1">
+            <span className="font-mono font-bold w-36 shrink-0 text-slate-800 text-xs md:text-sm uppercase tracking-wider">SUBJECT ASSET:</span>
+            <span className="font-mono font-semibold text-sm md:text-base text-slate-900 break-all">
               {result.fileName}
             </span>
           </div>
-          <div className="flex items-end border-b border-slate-400/70 pb-1">
-            <span className="font-mono font-bold w-32 md:w-40 shrink-0 text-slate-800 text-sm md:text-base">MODALITY:</span>
-            <span className="font-[cursive] text-xl md:text-2xl text-[#2a2a27] -rotate-1 ml-4 tracking-wide uppercase">
-              {result.fileType} ANALYSIS
+          <div className="flex flex-col sm:flex-row sm:items-center border-b border-slate-300 pb-2 gap-1">
+            <span className="font-mono font-bold w-36 shrink-0 text-slate-800 text-xs md:text-sm uppercase tracking-wider">MODALITY:</span>
+            <span className="font-mono font-semibold text-sm md:text-base text-blue-900 uppercase tracking-wide">
+              {result.fileType} FORENSIC PIPELINE
             </span>
           </div>
-          <div className="flex items-end border-b border-slate-400/70 pb-1">
-            <span className="font-mono font-bold w-32 md:w-40 shrink-0 text-slate-800 text-sm md:text-base">THREAT LEVEL:</span>
-            <span className="font-[cursive] text-xl md:text-2xl text-[#2a2a27] ml-4 tracking-wide">
-              {isFake ? `${result.confidence}% MANIPULATED` : `${100 - result.confidence}% NATURAL`}
+          <div className="flex flex-col sm:flex-row sm:items-center border-b border-slate-300 pb-2 gap-1">
+            <span className="font-mono font-bold w-36 shrink-0 text-slate-800 text-xs md:text-sm uppercase tracking-wider">VERDICT / CONFIDENCE:</span>
+            <span className={cn(
+              "font-mono font-bold text-sm md:text-base tracking-wide px-2.5 py-0.5 rounded w-fit",
+              isFake ? "bg-red-100 text-red-700 border border-red-300" : "bg-emerald-100 text-emerald-800 border border-emerald-300"
+            )}>
+              {isFake ? `${result.confidence}% MANIPULATED (FORGERY)` : `${100 - result.confidence}% AUTHENTIC`}
             </span>
           </div>
         </div>
 
         {/* Details Grid */}
         <div className="mb-8 relative z-10 w-full md:w-2/3">
-          <h3 className="font-mono font-bold text-slate-900 border-b-2 border-slate-800 mb-6 inline-block tracking-wider">
-            INVESTIGATOR NOTES & HEURISTICS
+          <h3 className="font-mono text-xs font-bold text-slate-900 border-b-2 border-slate-800 pb-1 mb-4 inline-block tracking-wider uppercase">
+            ANALYTICAL BREAKDOWN &amp; FEATURE EXTRACTION
           </h3>
-          <div className="grid grid-cols-1 gap-5">
+          <div className="grid grid-cols-1 gap-3">
             {result.details.map((detail, index) => (
-              <div key={index} className="flex flex-col sm:flex-row sm:items-end gap-1 sm:gap-4 border-b border-slate-400/40 pb-2">
-                <div className="font-mono text-sm font-semibold text-slate-700 w-48 shrink-0 flex items-center gap-2">
-                  <span>►</span> {detail.label}
+              <div key={index} className="flex flex-col sm:flex-row sm:items-start gap-1 sm:gap-3 border-b border-slate-300/70 pb-2">
+                <div className="font-mono text-xs font-bold text-slate-700 w-44 shrink-0 flex items-center gap-1.5 pt-0.5">
+                  <span className="text-blue-600">■</span> {detail.label}
                 </div>
-                {/* FIXED: Removed `truncate` so long text like "SVM (RBF, C=50)" wraps safely */}
-                <div className="font-[cursive] text-lg md:text-xl text-[#2a2a27] tracking-wide mt-1 sm:mt-0 leading-relaxed">
+                <div className="font-mono text-xs md:text-sm font-medium text-slate-900 leading-relaxed">
                   {detail.value}
                 </div>
               </div>

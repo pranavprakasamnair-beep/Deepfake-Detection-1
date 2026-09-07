@@ -1,4 +1,4 @@
-import os
+﻿video_utils_code = '''import os
 import cv2
 import numpy as np
 
@@ -145,3 +145,8 @@ def extract_faces_from_video(video_path: str, max_frames: int = 35, target_size:
 
     cap.release()
     return faces
+'''
+
+with open("utils/video_utils.py", "w", encoding="utf-8") as f:
+    f.write(video_utils_code)
+print("Updated utils/video_utils.py with cascade fallback paths")

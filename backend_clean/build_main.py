@@ -1,4 +1,4 @@
-from fastapi import FastAPI 
+﻿main_code = '''from fastapi import FastAPI 
 from fastapi.middleware.cors import CORSMiddleware
 from api.routes import router
 
@@ -15,17 +15,6 @@ app.add_middleware(
     allow_headers=["*"],
     allow_methods=["*"]
 )
-
-import os
-from fastapi.responses import FileResponse
-
-FAVICON_PATH = os.path.abspath(os.path.join(os.path.dirname(__file__), "..", "frontend", "public", "favicon.ico"))
-
-@app.get("/favicon.ico", include_in_schema=False)
-async def favicon():
-    if os.path.exists(FAVICON_PATH):
-        return FileResponse(FAVICON_PATH)
-    return {"status": "ok"}
 
 @app.get("/")
 async def root():
@@ -46,3 +35,8 @@ async def root():
     }
 
 app.include_router(router)
+'''
+
+with open("main.py", "w", encoding="utf-8") as f:
+    f.write(main_code)
+print("Wrote main.py")

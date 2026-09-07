@@ -1,4 +1,6 @@
-# AI Driven Deepfake Image and Video Detection Framework
+﻿import os
+
+readme_content = r"""# AI Driven Deepfake Image and Video Detection Framework
 
 [![Department](https://img.shields.io/badge/Department-Computer%20Engineering-blue.svg)](https://pce.ac.in)
 [![Institution](https://img.shields.io/badge/Institution-Pillai%20College%20of%20Engineering-orange.svg)](https://pce.ac.in)
@@ -133,16 +135,16 @@ Our framework performs joint **Spatial, Frequency, Attention, and Spatio-Tempora
 - Python 3.11+
 - Node.js LTS (v20+)
 
-### Running the Project
+### 1-Click Launch (Windows)
+Double-click `run_project.bat` in the project root.
 
-Open two terminal windows:
-
+### Manual Launch
 ```powershell
-# Terminal 1: Launch Backend AI Engine
+# 1. Start Backend
 cd backend_clean
-.\.venv\Scripts\uvicorn.exe main:app --host 127.0.0.1 --port 8000
+.\.venv\Scripts\uvicorn.exe main:app --host 127.0.0.1 --port 8000 --reload
 
-# Terminal 2: Launch Frontend Web Console
+# 2. Start Frontend
 cd frontend
 npm run dev
 ```
@@ -164,3 +166,8 @@ npm run dev
 
 **Pillai College of Engineering, Navi Mumbai**  
 *Department of Computer Engineering - Major Capstone Project (2025-2026)*
+"""
+
+with open("../README.md", "w", encoding="utf-8") as f:
+    f.write(readme_content)
+print("Updated root README.md successfully!")

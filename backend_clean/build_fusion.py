@@ -1,4 +1,5 @@
-import numpy as np
+﻿# 5. FEATURE FUSION & DECISION MODULE WITH RULE-BASED FALLBACK
+fusion_code = '''import numpy as np
 
 def apply_rule_based_fallback(
     preliminary_score: float,
@@ -128,3 +129,8 @@ def fuse_video_multi_branch(
         "audio_score": round(audio_score, 4) if audio_score is not None else None,
         "suspicious_frames": temporal_data.get("suspicious_frames", [])
     }
+'''
+
+with open("ml_models/fusion_model.py", "w", encoding="utf-8") as f:
+    f.write(fusion_code)
+print("Wrote ml_models/fusion_model.py")
